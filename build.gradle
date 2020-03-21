@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.github.smaegaard'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Bowling point calculator',
+                'Main-Class': 'com.github.smaegaard.bowlingPointsCalculator.LaunchBowlingPointsCalculator'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
