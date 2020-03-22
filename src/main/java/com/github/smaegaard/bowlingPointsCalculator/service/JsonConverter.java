@@ -36,6 +36,4 @@ public class JsonConverter {
     public APIPostResult getAPIPostResultFromJson(String input) {
         return gson.fromJson(input, APIPostResult.class);
     }
-
-
 }

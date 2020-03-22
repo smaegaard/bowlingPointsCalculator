@@ -8,6 +8,7 @@ public class APIPostResult {
     List<Integer> points;
 
     public APIPostResult(String token, List<Integer> points) {
+        this.success = false;
         this.token = token;
         this.points = points;
     }
@@ -40,6 +41,7 @@ public class APIPostResult {
     public String toString() {
         return "APIPostResult{" +
                 "token='" + token + '\'' +
+                ", success=" + success +
                 ", points=" + points +
                 '}';
     }
