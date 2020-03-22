@@ -20,11 +20,18 @@ public class BowlingPointsCalculator {
 
     public void run() {
         pointsAndToken = PointService.getInstance().getPointsAndToken();
+        bowlingGame = new BowlingGame(pointsAndToken, new TraditionalScoreCalculator());
 
-        //bowlingGame = new BowlingGame(pointsAndToken, new TraditionalScoreCalculator());
-        bowlingGame = new BowlingGame(new PointsAndToken("token", Arrays.asList(10, 0, 5, 5, 6, 2, 5, 5, 5, 5, 5, 5, 6, 2, 7, 2, 4, 6, 5, 5, 10)), new TraditionalScoreCalculator());
+        boolean result = false;
+        try {
+            result = PointService.getInstance().validateResult(bowlingGame.getToken(), bowlingGame.getResult());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
 
-        boolean result = PointService.getInstance().validateResult(bowlingGame.getToken(), bowlingGame.getResult());
+        System.out.println("points: " + pointsAndToken.getPoints().toString() );
+        System.out.println("result: " + bowlingGame.getResult().toString() );
 
         if (result) {
             System.out.println("The points were correctly summed and verified.");

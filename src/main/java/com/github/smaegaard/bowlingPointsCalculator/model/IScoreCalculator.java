@@ -7,5 +7,5 @@ import java.util.List;
     ex. the list 3,4,3,7,10,0  is 3 frames [3,4],[3,7],[10,0]
  */
 public interface IScoreCalculator {
-    List<Integer> calculateScore( List<Integer> points);
+    List<Integer> calculateScore(List<Integer> points);
 }

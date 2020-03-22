@@ -28,6 +28,6 @@ public class BowlingGame {
     }
 
     public List<Integer> getResult() {
-        return scoreCalculator.calculateScore( this.pointsAndToken.getPoints() );
+        return scoreCalculator.calculateScore(this.pointsAndToken.getPoints());
     }
 }

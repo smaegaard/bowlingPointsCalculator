@@ -7,7 +7,6 @@ import java.util.List;
  * Calculate bowling points accordingly to this link
  * <p>
  * https://en.wikipedia.org/wiki/Ten-pin_bowling#Traditional_scoring
- *
  */
 public class TraditionalScoreCalculator implements IScoreCalculator {
     ArrayList<Integer> result = new ArrayList<>();
@@ -52,6 +51,9 @@ public class TraditionalScoreCalculator implements IScoreCalculator {
                                         break;
                                 }
                                 break;
+                            case FRAME10_STRIKE:
+                                addScoreToResult(30);
+                                break;
                             case OPEN:
                             case SPLIT:
                             default:
@@ -89,6 +91,8 @@ public class TraditionalScoreCalculator implements IScoreCalculator {
     }
 
     private state getFrameState(int a, int b) {
+        if (a + b == 20)
+            return state.FRAME10_STRIKE;
         if (a == 10)
             return state.STRIKE;
         if (a + b == 10)
@@ -103,7 +107,7 @@ public class TraditionalScoreCalculator implements IScoreCalculator {
     }
 
     enum state {
-        STRIKE, SPLIT, OPEN
+        STRIKE, FRAME10_STRIKE, SPLIT, OPEN
     }
 
 }

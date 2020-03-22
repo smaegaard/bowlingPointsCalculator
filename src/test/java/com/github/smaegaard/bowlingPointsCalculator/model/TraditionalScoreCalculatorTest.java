@@ -13,7 +13,7 @@ class TraditionalScoreCalculatorTest {
 
     @Test
     void calculateScore_perfect_game() {
-        List<Integer> actual = scoreCalculator.calculateScore( Arrays.asList(10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0) );
+        List<Integer> actual = scoreCalculator.calculateScore( Arrays.asList(10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,0,10,10) );
         List<Integer> expected = Arrays.asList(30,60,90,120,150,180,210,240,270,300);
 
         assertEquals(expected, actual);
