@@ -2,14 +2,11 @@ package com.github.smaegaard.bowlingPointsCalculator;
 
 import com.github.smaegaard.bowlingPointsCalculator.exceptions.RestConnectionException;
 import com.github.smaegaard.bowlingPointsCalculator.model.BowlingGame;
-import com.github.smaegaard.bowlingPointsCalculator.model.IScoreCalculator;
 import com.github.smaegaard.bowlingPointsCalculator.model.PointsAndToken;
 import com.github.smaegaard.bowlingPointsCalculator.model.TraditionalScoreCalculator;
 import com.github.smaegaard.bowlingPointsCalculator.service.PointService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BowlingPointsCalculator {
     private PointService pointService;
@@ -22,7 +19,7 @@ public class BowlingPointsCalculator {
     public void run() {
         try {
             pointsAndToken = PointService.getInstance().getPointsAndToken();
-        } catch (RestConnectionException e) {
+        } catch (RestConnectionException | IOException e) {
             e.printStackTrace();
         }
 
@@ -30,7 +27,7 @@ public class BowlingPointsCalculator {
 
         boolean result = false;
         try {
-            result = PointService.getInstance().validateResult(bowlingGame.getToken(), bowlingGame.getResult());
+            result = PointService.getInstance().postResult(bowlingGame.getToken(), bowlingGame.getResult());
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);

@@ -1,6 +1,6 @@
 package com.github.smaegaard.bowlingPointsCalculator.service;
 
-import com.github.smaegaard.bowlingPointsCalculator.model.APIPostResult;
+import com.github.smaegaard.bowlingPointsCalculator.model.RESTResult;
 import com.github.smaegaard.bowlingPointsCalculator.model.PointsAndToken;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ class JsonConverterTest {
     @Test
     void getJsonFromAPIPostResult() {
         String expected = "{\"token\":\"mytoken\",\"success\":false,\"points\":[7,15]}";
-        String actual = jsonConverter.getJsonFromAPIPostResult(new APIPostResult("mytoken", Arrays.asList(7, 15)));
+        String actual = jsonConverter.getJsonFromAPIPostResult(new RESTResult("mytoken", Arrays.asList(7, 15)));
 
         assertEquals(expected, actual);
     }
@@ -32,8 +32,8 @@ class JsonConverterTest {
     @Test
     void getAPIPostResultFromJson() {
         String input = "{\"success\":false,\"points\":[1,2,3,4,5,6]}";
-        APIPostResult expected = new APIPostResult("mytoken", Arrays.asList(1, 2, 3, 4, 5, 6));
-        APIPostResult actual = jsonConverter.getAPIPostResultFromJson(input);
+        RESTResult expected = new RESTResult("mytoken", Arrays.asList(1, 2, 3, 4, 5, 6));
+        RESTResult actual = jsonConverter.getAPIPostResultFromJson(input);
 
         assertEquals(expected.getPoints(), actual.getPoints());
         assertEquals(expected.isSuccess(), actual.isSuccess());

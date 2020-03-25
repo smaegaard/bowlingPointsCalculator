@@ -2,7 +2,7 @@ package com.github.smaegaard.bowlingPointsCalculator.service;
 
 
 import com.github.smaegaard.bowlingPointsCalculator.model.APIPointsAndToken;
-import com.github.smaegaard.bowlingPointsCalculator.model.APIPostResult;
+import com.github.smaegaard.bowlingPointsCalculator.model.RESTResult;
 import com.github.smaegaard.bowlingPointsCalculator.model.PointsAndToken;
 import com.google.gson.Gson;
 
@@ -29,11 +29,11 @@ public class JsonConverter {
         return pointsAndToken;
     }
 
-    public String getJsonFromAPIPostResult(APIPostResult apiPostResult) {
-        return gson.toJson(apiPostResult);
+    public String getJsonFromAPIPostResult(RESTResult RESTResult) {
+        return gson.toJson(RESTResult);
     }
 
-    public APIPostResult getAPIPostResultFromJson(String input) {
-        return gson.fromJson(input, APIPostResult.class);
+    public RESTResult getAPIPostResultFromJson(String input) {
+        return gson.fromJson(input, RESTResult.class);
     }
 }

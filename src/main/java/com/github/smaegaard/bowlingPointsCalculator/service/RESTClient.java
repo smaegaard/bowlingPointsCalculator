@@ -11,7 +11,6 @@ import java.net.URL;
 
 public class RESTClient {
     private static final int CONNECTION_TIMEOUT = 5000;
-    private URL url = null;
     private HttpURLConnection connection;
 
     public RESTResponse get(String endpoint) throws IOException {
@@ -50,7 +49,7 @@ public class RESTClient {
     }
 
     private HttpURLConnection getConnection(String endpoint, requestType type) throws IOException {
-        this.url = new URL(endpoint);
+        URL url = new URL(endpoint);
         connection = (HttpURLConnection) url.openConnection();
         connection.setConnectTimeout(CONNECTION_TIMEOUT);
         connection.setReadTimeout(CONNECTION_TIMEOUT);

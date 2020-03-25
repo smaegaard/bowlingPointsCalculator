@@ -1,7 +1,7 @@
 package com.github.smaegaard.bowlingPointsCalculator.service;
 
 import com.github.smaegaard.bowlingPointsCalculator.exceptions.RestConnectionException;
-import com.github.smaegaard.bowlingPointsCalculator.model.APIPostResult;
+import com.github.smaegaard.bowlingPointsCalculator.model.RESTResult;
 import com.github.smaegaard.bowlingPointsCalculator.model.PointsAndToken;
 import com.github.smaegaard.bowlingPointsCalculator.model.RESTResponse;
 
@@ -27,14 +27,10 @@ public class PointService {
         return pointService;
     }
 
-    public PointsAndToken getPointsAndToken() throws RestConnectionException {
-        RESTResponse restResponse = null;
+    public PointsAndToken getPointsAndToken() throws RestConnectionException, IOException {
+        RESTResponse restResponse;
 
-        try {
-            restResponse = restClient.get(pointsAndTokenEndpoint);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        restResponse = restClient.get(pointsAndTokenEndpoint);
 
         if( restResponse.getStatus() >= 300 ) {
             throw new RestConnectionException(restResponse.getStatus());
@@ -43,12 +39,12 @@ public class PointService {
         return jsonConverter.getPointsAndTokenFromJson(restResponse.getBody());
     }
 
-    public boolean validateResult(String token, List<Integer> result) throws IOException {
-        String jsonData = jsonConverter.getJsonFromAPIPostResult(new APIPostResult(token, result));
+    public boolean postResult(String token, List<Integer> result) throws IOException {
+        String jsonData = jsonConverter.getJsonFromAPIPostResult(new RESTResult(token, result));
 
         RESTResponse response = restClient.post(validateResultEndpoint, jsonData);
 
-        APIPostResult data = jsonConverter.getAPIPostResultFromJson(response.getBody());
+        RESTResult data = jsonConverter.getAPIPostResultFromJson(response.getBody());
 
         return data.isSuccess();
     }

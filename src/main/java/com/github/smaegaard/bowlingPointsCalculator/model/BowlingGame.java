@@ -15,16 +15,8 @@ public class BowlingGame {
         return pointsAndToken.getToken();
     }
 
-    public void setToken(String token) {
-        this.pointsAndToken.setToken(token);
-    }
-
     public List<Integer> getPoints() {
         return this.pointsAndToken.getPoints();
-    }
-
-    public void setPoints(List<Integer> points) {
-        this.pointsAndToken.setPoints(points);
     }
 
     public List<Integer> getResult() {

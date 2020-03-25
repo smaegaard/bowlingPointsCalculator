@@ -2,6 +2,9 @@ package com.github.smaegaard.bowlingPointsCalculator.model;
 
 import java.util.List;
 
+/*
+    check README.md file
+ */
 public class APIPointsAndToken {
     String token;
     List<List<Integer>> points;
@@ -10,16 +13,8 @@ public class APIPointsAndToken {
         return token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public List<List<Integer>> getPoints() {
         return points;
-    }
-
-    public void setPoints(List<List<Integer>> points) {
-        this.points = points;
     }
 
     @Override

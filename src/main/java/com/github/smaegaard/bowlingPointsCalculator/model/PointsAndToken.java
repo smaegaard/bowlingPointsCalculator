@@ -38,10 +38,6 @@ public class PointsAndToken {
         return points;
     }
 
-    public void setPoints(List<Integer> points) {
-        this.points = points;
-    }
-
     @Override
     public String toString() {
         return "PointsAndToken{" +
